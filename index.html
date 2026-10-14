@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Air Draw</title>
+  <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/vision_bundle.mjs" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <video id="video" class="hidden" playsinline muted></video>
+  <canvas id="person"></canvas>
+  <canvas id="draw"></canvas>
+  <canvas id="overlay"></canvas>
+
+  <header class="toolbar" id="toolbar">
+    <div class="group colors" id="colors">
+      <button class="swatch active" data-color="#ff3b6b" style="--c:#ff3b6b" aria-label="Pink"></button>
+      <button class="swatch" data-color="#ffb020" style="--c:#ffb020" aria-label="Orange"></button>
+      <button class="swatch" data-color="#ffe14d" style="--c:#ffe14d" aria-label="Yellow"></button>
+      <button class="swatch" data-color="#3ee07a" style="--c:#3ee07a" aria-label="Green"></button>
+      <button class="swatch" data-color="#2ec5ff" style="--c:#2ec5ff" aria-label="Blue"></button>
+      <button class="swatch" data-color="#9b6bff" style="--c:#9b6bff" aria-label="Purple"></button>
+      <button class="swatch" data-color="#1b1b2a" style="--c:#1b1b2a" aria-label="Black"></button>
+      <button class="swatch rainbow" data-color="rainbow" aria-label="Rainbow"></button>
+    </div>
+    <div class="group">
+      <button class="tool" data-size="4">S</button>
+      <button class="tool active" data-size="10">M</button>
+      <button class="tool" data-size="22">L</button>
+    </div>
+    <div class="group">
+      <button class="tool toggle active" id="glowBtn" data-action="glow">Glow</button>
+      <button class="tool toggle active" id="camBtn" data-action="camera" title="Cut me out onto the background">Cutout</button>
+      <button class="tool" data-action="undo">Undo</button>
+      <button class="tool" data-action="clear">Clear</button>
+      <button class="tool primary" data-action="save">Save</button>
+    </div>
+  </header>
+
+  <div class="status" id="status">
+    <span class="dot" id="modeDot"></span><span id="modeText">Waiting for hand…</span>
+  </div>
+
+  <aside class="help" id="help">
+    <div><b>☝️ Index finger</b> draw</div>
+    <div><b>✌️ Two fingers</b> move pen · hover a button to pick it</div>
+    <div><b>🖐️ Open palm</b> erase</div>
+    <div><b>✊ Fist</b> pause</div>
+  </aside>
+
+  <section class="start" id="start">
+    <div class="card">
+      <h1>Air Draw</h1>
+      <p>Point your finger at the camera and draw in the air. Your video stays on your device and is never uploaded.</p>
+      <button id="startBtn" class="big">Start camera</button>
+      <p class="small" id="startMsg"></p>
+    </div>
+  </section>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
